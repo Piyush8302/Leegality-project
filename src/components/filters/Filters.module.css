@@ -39,7 +39,7 @@
   margin-bottom: 10px;
 }
 
-/* long lists (24 categories, 60+ brands) scroll inside the section */
+/* scroll long lists */
 .list {
   list-style: none;
   max-height: 220px;

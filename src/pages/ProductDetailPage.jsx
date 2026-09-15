@@ -23,7 +23,7 @@ function ProductDetailPage() {
   const location = useLocation();
   const { product, loading, error, retry } = useProduct(id);
 
-  // remember which product the picked image belongs to, so it resets on a new product
+  // reset picked image when the product changes
   const [picked, setPicked] = useState({ productId: null, image: "" });
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function ProductDetailPage() {
   }, [id]);
 
   function handleBack() {
-    // page was opened directly (new tab / refresh), there is no listing page to go back to
+    // opened directly, nothing to go back to
     if (location.key === "default") {
       navigate("/");
     } else {

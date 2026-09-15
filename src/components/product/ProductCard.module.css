@@ -35,7 +35,7 @@
   padding: 12px;
 }
 
-/* long titles get cut after 2 lines so all cards stay the same height */
+/* max 2 lines so cards stay same height */
 .title {
   font-size: 14px;
   font-weight: 600;

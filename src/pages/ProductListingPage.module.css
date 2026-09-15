@@ -20,7 +20,7 @@
   border-right: 1px solid var(--color-border);
 }
 
-/* desktop: menu button hides the sidebar */
+/* desktop: menu button hides sidebar */
 .sidebarHidden {
   grid-template-columns: 1fr;
 }
@@ -63,7 +63,7 @@
     grid-template-columns: 1fr;
   }
 
-  /* mobile: sidebar is closed by default, menu button opens it */
+  /* mobile: hidden by default */
   .sidebar {
     display: none;
     border-right: none;

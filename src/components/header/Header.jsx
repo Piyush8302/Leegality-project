@@ -20,7 +20,7 @@ function Header({ onMenuClick }) {
     event.preventDefault();
     const text = event.target.elements.search.value.trim();
 
-    // keep the current filters when searching from the listing page
+    // keep existing filters
     const params = isListingPage ? new URLSearchParams(searchParams) : new URLSearchParams();
 
     if (text) {
@@ -33,11 +33,10 @@ function Header({ onMenuClick }) {
     navigate({ pathname: "/", search: params.toString() });
   }
 
-  // on pages without a sidebar, the menu button takes the user back to the filters
+  // no sidebar on this page, go back to listing and open filters
   function openFilters() {
     sessionStorage.setItem(OPEN_FILTERS_KEY, "true");
 
-    // going back keeps the filters the user had, a directly opened page has no history
     if (location.key === "default") {
       navigate("/");
     } else {

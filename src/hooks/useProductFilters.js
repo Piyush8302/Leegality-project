@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-// Filters live in the URL so they survive refresh and going back from the detail page.
+// filters are kept in the url so refresh / back button keeps them
 const PARAMS = {
   CATEGORY: "category",
   BRAND: "brand",
@@ -11,7 +11,6 @@ const PARAMS = {
   PAGE: "page",
 };
 
-// empty values are removed so the URL stays clean
 function setOrDelete(params, key, value) {
   if (value === null || value === undefined || String(value).trim() === "") {
     params.delete(key);
@@ -20,7 +19,7 @@ function setOrDelete(params, key, value) {
   }
 }
 
-// ignore invalid prices typed into the URL, e.g. minPrice=abc
+// ignore stuff like minPrice=abc
 function readPrice(params, key) {
   const value = params.get(key);
   if (value === null || value.trim() === "") return "";
@@ -42,8 +41,8 @@ export function useProductFilters() {
     [searchParams]
   );
 
-  // every filter change goes back to page 1 unless told otherwise.
-  // replace: true so filter clicks don't pile up in browser history
+  // go back to page 1 on filter change
+  // replace so every click doesn't add a history entry
   const updateParams = useCallback(
     (changeFn, { resetPage = true } = {}) => {
       setSearchParams(
@@ -61,7 +60,7 @@ export function useProductFilters() {
     [setSearchParams]
   );
 
-  // brands of the old category may not exist in the new one, so clear them
+  // old brands won't match the new category
   const setCategory = useCallback(
     (slug) => {
       updateParams((params) => {
@@ -107,7 +106,7 @@ export function useProductFilters() {
     [updateParams]
   );
 
-  // keep current filters, only change the page
+  // don't reset page here
   const setPage = useCallback(
     (page) => {
       updateParams(

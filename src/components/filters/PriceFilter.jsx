@@ -21,7 +21,7 @@ function PriceFilter({ minPrice, maxPrice, onApply }) {
   const timerRef = useRef(null);
   const onApplyRef = useRef(onApply);
 
-  // price was changed from outside (e.g. "Clear all"), show the new values in the inputs
+  // sync inputs when price is changed from outside (clear all)
   if (lastUrlValues.minPrice !== minPrice || lastUrlValues.maxPrice !== maxPrice) {
     setLastUrlValues({ minPrice, maxPrice });
     setMin(minPrice);
@@ -45,7 +45,7 @@ function PriceFilter({ minPrice, maxPrice, onApply }) {
     }
   }
 
-  // apply automatically once the user stops typing
+  // auto apply after user stops typing
   function applyLater(newMin, newMax) {
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => apply(newMin, newMax), AUTO_APPLY_DELAY);

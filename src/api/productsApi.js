@@ -1,12 +1,13 @@
-const BASE_URL = "https://dummyjson.com";
+// fallback in case env is missing
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://dummyjson.com";
 
-// the listing only needs these fields, id is always included by the API
+// only the fields needed for the cards
 const LIST_FIELDS = "title,price,rating,thumbnail,brand,category";
 
 async function request(path, signal) {
   const response = await fetch(`${BASE_URL}${path}`, { signal });
 
-  // fetch only rejects on network errors, so 404 / 500 have to be checked here
+  // fetch doesn't throw on 404 / 500
   if (!response.ok) {
     const message =
       response.status === 404
@@ -18,7 +19,7 @@ async function request(path, signal) {
   return response.json();
 }
 
-// limit=0 returns every product, brand and price filtering happen on the client
+// limit=0 -> all products, filtering is done on client side
 export function getAllProducts(signal) {
   return request(`/products?limit=0&select=${LIST_FIELDS}`, signal);
 }
@@ -30,7 +31,6 @@ export function getProductsByCategory(slug, signal) {
   );
 }
 
-// returns [{ slug, name, url }]
 export function getCategories(signal) {
   return request("/products/categories", signal);
 }

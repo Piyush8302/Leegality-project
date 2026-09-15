@@ -38,7 +38,7 @@ export function useProducts(category) {
 
     loadProducts();
 
-    // switching categories quickly: ignore the response of the old category
+    // avoid race condition when category changes fast
     return () => {
       ignore = true;
     };

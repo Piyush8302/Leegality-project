@@ -1,4 +1,4 @@
-/*  Design tokens (colors, spacing)  */
+/* colors, spacing */
 :root {
   --color-primary: #2f80ed;
   --color-primary-dark: #1c6ed6;
@@ -17,7 +17,7 @@
   --header-height: 60px;
 }
 
-/*  Reset  */
+/* reset */
 *,
 *::before,
 *::after {
@@ -50,14 +50,14 @@ select {
   font: inherit;
 }
 
-/*  Common layout  */
+/* layout */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/*  Common buttons  */
+/* buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -90,7 +90,7 @@ select {
   background-color: var(--color-primary-dark);
 }
 
-/*  Accessibility: visible keyboard focus  */
+/* keyboard focus */
 :focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

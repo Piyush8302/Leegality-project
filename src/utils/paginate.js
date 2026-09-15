@@ -1,6 +1,6 @@
 export const PAGE_SIZE = 12;
 
-// an out of range page (0, negative, too big) is clamped to a valid one
+// clamp page so things like ?page=99 or ?page=-1 don't break
 export function paginate(items, page = 1, pageSize = PAGE_SIZE) {
   const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
   const currentPage = Math.min(Math.max(1, Number(page) || 1), totalPages);
@@ -16,7 +16,7 @@ export function paginate(items, page = 1, pageSize = PAGE_SIZE) {
   };
 }
 
-// page numbers around the current page, e.g. page 8 of 17 -> [6, 7, 8, 9, 10]
+// e.g. page 8 of 17 -> 6 7 8 9 10
 export function getPageNumbers(currentPage, totalPages, maxVisible = 5) {
   const half = Math.floor(maxVisible / 2);
 

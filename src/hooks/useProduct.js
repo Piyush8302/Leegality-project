@@ -33,7 +33,7 @@ export function useProduct(id) {
 
     loadProduct();
 
-    // ignore the old response if id changes before it comes back
+    // don't set state from an old request
     return () => {
       ignore = true;
     };

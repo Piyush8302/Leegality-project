@@ -1,4 +1,4 @@
-// unique brands sorted A-Z, products without a brand (e.g. groceries) are skipped
+// some products (groceries) don't have a brand
 export function getUniqueBrands(products) {
   const brands = new Set();
 
@@ -11,12 +11,11 @@ export function getUniqueBrands(products) {
   return [...brands].sort((a, b) => a.localeCompare(b));
 }
 
-// 0 is a valid price, so a plain falsy check is not enough
+// 0 is a valid price
 function hasValue(value) {
   return value !== null && value !== undefined && value !== "";
 }
 
-// brand + price + search, a product is kept only if all of them match
 export function filterProducts(
   products,
   { brands = [], minPrice = null, maxPrice = null, search = "" } = {}

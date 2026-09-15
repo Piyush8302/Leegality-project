@@ -9,7 +9,7 @@ function ReviewList({ reviews = [] }) {
   return (
     <ul className={styles.list}>
       {reviews.map((review, index) => (
-        // reviews have no id in the API, name + date + index keeps the key unique
+        // reviews don't have an id
         <li key={`${review.reviewerName}-${review.date}-${index}`} className={styles.review}>
           <div className={styles.reviewHeader}>
             <span className={styles.name}>{review.reviewerName}</span>

@@ -69,7 +69,7 @@
   color: var(--color-border);
 }
 
-/* gold stars on top, cut to the rating width */
+/* gold stars cut to rating width */
 .starsFilled {
   position: absolute;
   top: 0;

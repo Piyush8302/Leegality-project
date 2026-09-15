@@ -27,7 +27,7 @@ function CategoryFilter({ categories, loading, error, selected, onSelect, search
                   <input
                     type="checkbox"
                     checked={isSelected}
-                    // API supports one category at a time, clicking the selected one clears it
+                    // only one category at a time, click again to unselect
                     onChange={() => onSelect(isSelected ? "" : category.slug)}
                   />
                   <span>{category.name}</span>

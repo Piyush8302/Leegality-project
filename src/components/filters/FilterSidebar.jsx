@@ -14,7 +14,7 @@ function FilterSidebar({
   onPriceApply,
   onBrandToggle,
 }) {
-  // narrows down the category and brand lists, does not filter products
+  // only searches the lists below, not products
   const [search, setSearch] = useState("");
 
   return (

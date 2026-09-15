@@ -15,8 +15,8 @@ import { MOBILE_QUERY, OPEN_FILTERS_KEY } from "../utils/constants";
 import styles from "./ProductListingPage.module.css";
 
 function ProductListingPage() {
-  // desktop: sidebar is visible until toggled, mobile: hidden until toggled.
-  // coming from the menu button on another page opens it right away on mobile
+  // desktop: open by default, mobile: closed by default
+  // on mobile open it if user came from the menu button on detail page
   const [sidebarToggled, setSidebarToggled] = useState(
     () =>
       sessionStorage.getItem(OPEN_FILTERS_KEY) === "true" &&
@@ -40,7 +40,6 @@ function ProductListingPage() {
   const categories = useCategories();
   const { products, loading, error, retry } = useProducts(filters.category);
 
-  // brands come from the products of the selected category
   const brands = useMemo(() => getUniqueBrands(products), [products]);
   const filteredProducts = useMemo(
     () => filterProducts(products, filters),
