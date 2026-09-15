@@ -82,6 +82,7 @@ select {
 .btn-primary {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .btn-primary:hover:not(:disabled) {
