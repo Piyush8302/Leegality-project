@@ -1,0 +1,76 @@
+.page {
+  max-width: 1400px;
+  margin: 16px auto;
+  padding: 0 16px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - var(--header-height) - 32px);
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.sidebar {
+  padding: 16px;
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+}
+
+/* desktop: menu button hides the sidebar */
+.sidebarHidden {
+  grid-template-columns: 1fr;
+}
+
+.sidebarHidden .sidebar {
+  display: none;
+}
+
+.content {
+  min-width: 0;
+  padding: 16px 20px 24px;
+}
+
+.contentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.contentTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.clearButton {
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .layout,
+  .sidebarHidden {
+    grid-template-columns: 1fr;
+  }
+
+  /* mobile: sidebar is closed by default, menu button opens it */
+  .sidebar {
+    display: none;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebarHidden .sidebar {
+    display: block;
+  }
+}

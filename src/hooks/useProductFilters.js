@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-// URL me param ke naam (ek jagah define, typo se bachne ke liye)
+// Filters live in the URL so they survive refresh and going back from the detail page.
 const PARAMS = {
   CATEGORY: "category",
   BRAND: "brand",
@@ -11,7 +11,7 @@ const PARAMS = {
   PAGE: "page",
 };
 
-// Value khaali ho to URL se hata do, warna set karo
+// empty values are removed so the URL stays clean
 function setOrDelete(params, key, value) {
   if (value === null || value === undefined || String(value).trim() === "") {
     params.delete(key);
@@ -20,7 +20,7 @@ function setOrDelete(params, key, value) {
   }
 }
 
-// URL se price padho. Galat value (jaise "abc") ho to khaali maano
+// ignore invalid prices typed into the URL, e.g. minPrice=abc
 function readPrice(params, key) {
   const value = params.get(key);
   if (value === null || value.trim() === "") return "";
@@ -30,7 +30,6 @@ function readPrice(params, key) {
 export function useProductFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // URL → filters object (sirf URL badalne pe dobara banega)
   const filters = useMemo(
     () => ({
       category: searchParams.get(PARAMS.CATEGORY) ?? "",
@@ -43,7 +42,8 @@ export function useProductFilters() {
     [searchParams]
   );
 
-  // Common updater: URL badlo, aur by default page reset karo
+  // every filter change goes back to page 1 unless told otherwise.
+  // replace: true so filter clicks don't pile up in browser history
   const updateParams = useCallback(
     (changeFn, { resetPage = true } = {}) => {
       setSearchParams(
@@ -61,7 +61,7 @@ export function useProductFilters() {
     [setSearchParams]
   );
 
-  // Category badli → brands bhi clear (purani category ke brands ab valid nahi)
+  // brands of the old category may not exist in the new one, so clear them
   const setCategory = useCallback(
     (slug) => {
       updateParams((params) => {
@@ -72,7 +72,6 @@ export function useProductFilters() {
     [updateParams]
   );
 
-  // Brand select / unselect (multi-select)
   const toggleBrand = useCallback(
     (brand) => {
       updateParams((params) => {
@@ -108,7 +107,7 @@ export function useProductFilters() {
     [updateParams]
   );
 
-  // Page badalne pe reset NAHI karna
+  // keep current filters, only change the page
   const setPage = useCallback(
     (page) => {
       updateParams(

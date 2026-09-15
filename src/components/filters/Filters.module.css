@@ -1,0 +1,97 @@
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-white);
+  color: var(--color-text-light);
+}
+
+.searchBox:focus-within {
+  border-color: var(--color-primary);
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.section {
+  padding: 14px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* long lists (24 categories, 60+ brands) scroll inside the section */
+.list {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.option input {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-white);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.priceRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.applyButton {
+  width: 100%;
+}
+
+.hint {
+  color: var(--color-text-light);
+  font-size: 13px;
+}
+
+.errorText {
+  color: var(--color-error);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
