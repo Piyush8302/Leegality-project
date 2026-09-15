@@ -21,13 +21,11 @@ export function useProducts(category) {
         } else {
           response = await getAllProducts();
         }
-        console.log("Products response:", response);
 
         if (!ignore) {
           setProducts(response.products);
         }
       } catch (err) {
-        console.log("Products error:", err);
         if (!ignore) {
           setError(err.message);
         }
@@ -40,13 +38,14 @@ export function useProducts(category) {
 
     loadProducts();
 
+    // switching categories quickly: ignore the response of the old category
     return () => {
       ignore = true;
     };
   }, [category, retryCount]);
 
   function retry() {
-    setRetryCount(retryCount + 1);
+    setRetryCount((count) => count + 1);
   }
 
   return { products, loading, error, retry };

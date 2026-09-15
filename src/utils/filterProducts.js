@@ -1,8 +1,4 @@
-/**
- * Products me se unique brands nikalo (sidebar ke Brands filter ke liye).
- * - Jin products me brand nahi hai (jaise groceries), unhe skip karo
- * - A → Z sorted
- */
+// unique brands sorted A-Z, products without a brand (e.g. groceries) are skipped
 export function getUniqueBrands(products) {
   const brands = new Set();
 
@@ -15,15 +11,12 @@ export function getUniqueBrands(products) {
   return [...brands].sort((a, b) => a.localeCompare(b));
 }
 
-// Value di gayi hai ya nahi (0 bhi valid value hai)
+// 0 is a valid price, so a plain falsy check is not enough
 function hasValue(value) {
   return value !== null && value !== undefined && value !== "";
 }
 
-/**
- * Brand + price + search filters ek saath lagao (combined filtering).
- * Product tabhi dikhega jab saari conditions match karein.
- */
+// brand + price + search, a product is kept only if all of them match
 export function filterProducts(
   products,
   { brands = [], minPrice = null, maxPrice = null, search = "" } = {}

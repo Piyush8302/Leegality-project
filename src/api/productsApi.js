@@ -1,17 +1,12 @@
 const BASE_URL = "https://dummyjson.com";
 
-// Listing page ke liye sirf zaroori fields (response chhota aur fast)
-// id apne aap aata hai, card click pe detail page kholne ke kaam aayega
+// the listing only needs these fields, id is always included by the API
 const LIST_FIELDS = "title,price,rating,thumbnail,brand,category";
 
-/**
- * Common fetch helper.
- * - Error handling ek hi jagah
- * - signal: AbortController se purani request cancel karne ke liye
- */
 async function request(path, signal) {
   const response = await fetch(`${BASE_URL}${path}`, { signal });
 
+  // fetch only rejects on network errors, so 404 / 500 have to be checked here
   if (!response.ok) {
     const message =
       response.status === 404
@@ -23,12 +18,11 @@ async function request(path, signal) {
   return response.json();
 }
 
-// Saare products (limit=0 → saare products ek saath)
+// limit=0 returns every product, brand and price filtering happen on the client
 export function getAllProducts(signal) {
   return request(`/products?limit=0&select=${LIST_FIELDS}`, signal);
 }
 
-// Ek category ke saare products
 export function getProductsByCategory(slug, signal) {
   return request(
     `/products/category/${encodeURIComponent(slug)}?limit=0&select=${LIST_FIELDS}`,
@@ -36,12 +30,11 @@ export function getProductsByCategory(slug, signal) {
   );
 }
 
-// Saari categories → [{ slug, name, url }, ...]
+// returns [{ slug, name, url }]
 export function getCategories(signal) {
   return request("/products/categories", signal);
 }
 
-// Ek product ki poori detail (description, brand, category, reviews sab)
 export function getProductById(id, signal) {
   return request(`/products/${encodeURIComponent(id)}`, signal);
 }

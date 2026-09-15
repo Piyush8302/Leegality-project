@@ -12,17 +12,23 @@
   height: 100%;
   margin: 0 auto;
   padding: 0 16px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 560px) 1fr;
   align-items: center;
   gap: 16px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
 }
 
 .iconButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: var(--radius);
   background: transparent;
@@ -33,22 +39,7 @@
 .iconButton:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
-/* only needed on small screens where the sidebar is hidden */
-.menuButton {
-  display: none;
-}
-
-.logo {
-  font-size: 18px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 .searchForm {
-  flex: 1;
-  max-width: 560px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -70,16 +61,20 @@
 
 .actions {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  gap: 4px;
+  gap: 16px;
+}
+
+.icon {
+  display: flex;
 }
 
 @media (max-width: 768px) {
-  .menuButton {
-    display: flex;
+  .inner {
+    grid-template-columns: auto 1fr;
   }
 
-  .logo,
   .actions {
     display: none;
   }

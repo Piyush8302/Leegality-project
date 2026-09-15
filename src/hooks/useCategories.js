@@ -13,11 +13,8 @@ export function useCategories() {
         setError("");
 
         const response = await getCategories();
-        console.log("Categories response:", response);
-
         setCategories(response);
       } catch (err) {
-        console.log("Categories error:", err);
         setError(err.message);
       } finally {
         setLoading(false);

@@ -16,13 +16,11 @@ export function useProduct(id) {
         setError("");
 
         const response = await getProductById(id);
-        console.log("Product response:", response);
 
         if (!ignore) {
           setProduct(response);
         }
       } catch (err) {
-        console.log("Product error:", err);
         if (!ignore) {
           setError(err.message);
         }
