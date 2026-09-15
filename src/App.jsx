@@ -1,5 +1,5 @@
 function App() {
-  return <h1>Leegality Product App</h1>;
+  return <h1>Piyush </h1>;
 }
 
 export default App;
