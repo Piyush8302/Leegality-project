@@ -5,7 +5,7 @@ Product listing and detail app built with React + React Router, using the
 
 Live demo url : https://leegality-project.vercel.app
 
-## Setup
+## Setup instructions
 
 Needs Node 18+.
 
@@ -53,7 +53,7 @@ src/
   pages/        listing, detail, not found
 ```
 
-## Decisions I made
+## Architectural decisions
 
 **Filters are stored in the URL instead of useState.**
 One of the requirements was that filters should still be there when you come back from the detail
@@ -88,7 +88,7 @@ response updates state.
 **Styling** is CSS Modules + a few CSS variables in `index.css` for colors and spacing. No UI library,
 since the brief asked to avoid them.
 
-## Assumptions
+## Assumptions made
 
 - Category is single-select. The API takes one category per request, so picking one replaces the
   previous. Clicking the selected one again clears it.
@@ -104,7 +104,7 @@ since the brief asked to avoid them.
 - The mockup shows pagination on the detail page as well. That doesn't make sense for a single
   product so I left it out.
 
-## What I'd do with more time
+## Improvements if given more time
 
 - Move filtering and pagination to the backend so it works with a bigger catalogue
 - Tests - unit tests for the filter and pagination helpers, and an e2e test for the
