@@ -3,13 +3,15 @@
 Product listing and detail app built with React + React Router, using the
 "DummyJSON API" (https://dummyjson.com/docs/products).
 
-Live demo: https://leegality-project.vercel.app
+Live demo url : https://leegality-project.vercel.app
 
 ## Setup
 
 Needs Node 18+.
 
 ```bash
+git clone https://github.com/Piyush8302/Leegality-project.git
+cd Leegality-project
 npm install
 cp .env.example .env
 npm run dev
